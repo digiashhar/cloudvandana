@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashhar Hussain</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #00334e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .calculator {
+    padding: 10px;
+    width: 100%;
+    max-width: 280px;
+    margin: 50px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px #555;
+    background-color: #222;
+  }
+  .screen {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    min-height: 100px;
+    text-align: right;
+    font-size: 24px;
+    padding: 10px;
+    padding-top: 20px;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+    padding: 15px;
+  }
+  .c {
+    padding: 10px;
+    padding-top: 5px;
+    text-align: center;
+  }
+  button {
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 11px;
+    height: 50px;
+    border-radius: 10px !important;
+    background-color: #333;
+    color: white;
+  }
+  button.operator {
+    background-color: #009688;
+  }
+  button.operator:hover {
+    background-color: #00796b;
+  }
+  button.equals {
+    background-color: #4caf50;
+  }
+  button.equals:hover {
+    background-color: #388e3c;
+  }
+  li.clear {
+    height: 50px;
+    padding-top: 11px;
+    list-style-type: none;
+    font-size: 20px;
+    background-color: #f44336;
+    color: white;
+    width: 100% !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+  }
+  li.clear:hover {
+    background-color: #d32f2f;
+  }
+</style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="screen" id="screen"></div>
+    <div class="buttons">
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button class="operator" onclick="setOperator('+')">+</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button class="operator" onclick="setOperator('-')">-</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button class="operator" onclick="setOperator('')"></button>
+      <button onclick="appendDecimal('.')">.</button>
+      <button onclick="appendNumber('0')">0</button>
+      <button class="equals" onclick="calculateResult()">=</button>
+      <button class="operator" onclick="setOperator('/')">/</button>
+    </div>
+    <div class="c">
+      <li class="clear" onclick="clearScreen()">AC</li>
+    </div>
+  </div>
+
+  <script>
+    let currentInput = '0';
+    let operator = '';
+    let result = 0;
+
+    function updateScreen() {
+      document.getElementById('screen').textContent = currentInput;
+    }
+
+    function appendNumber(number) {
+      if (currentInput === '0') {
+        currentInput = number;
+      } else {
+        currentInput += number;
+      }
+      updateScreen();
+    }
+
+    function appendDecimal() {
+      if (!currentInput.includes('.')) {
+        currentInput += '.';
+        updateScreen();
+      }
+    }
+
+    function setOperator(op) {
+      operator = op;
+      result = parseFloat(currentInput);
+      currentInput = '0';
+      updateScreen();
+    }
+
+    function calculateResult() {
+      switch (operator) {
+        case '+':
+          result += parseFloat(currentInput);
+          break;
+        case '-':
+          result -= parseFloat(currentInput);
+          break;
+        case '*':
+          result *= parseFloat(currentInput);
+          break;
+        case '/':
+          result /= parseFloat(currentInput);
+          break;
+      }
+      currentInput = result.toString();
+      operator = '';
+      updateScreen();
+    }
+
+    function clearScreen() {
+      currentInput = '0';
+      operator = '';
+      result = 0;
+      updateScreen();
+    }
+  </script>
+</body>
+</html>
