@@ -2,7 +2,7 @@
 
 import java.util.Random;
 
-public class ArrayShuffler {
+public class Main {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
         shuffle(arr);
