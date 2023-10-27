@@ -1,18 +1,18 @@
 const inputSentence = prompt("Enter a sentence:");
-const reversedSentence = reverseWordsInSentence(inputSentence);
+const reversedSentence = cloudvandanareverse(inputSentence);
 console.log("Reversed sentence: " + reversedSentence);
 
-function reverseWordsInSentence(sentence) {
+function cloudvandanareverse(sentence) {
     let reversedSentence = '';
-    let word = '';
+    let ashhar = '';
     for (let i = 0; i < sentence.length; i++) {
         if (sentence[i] !== ' ') {
-            word = sentence[i] + word; // Build the word in reverse
+            ashhar = sentence[i] + ashhar; // Building the word in reverse
         } else {
-            reversedSentence += word + ' ';
-            word = ''; // Reset the word for the next word
+            reversedSentence += ashhar + ' ';
+            ashhar = ''; //  using this to reset the word for the next word
         }
     }
-    reversedSentence += word; // Add the last word
+    reversedSentence += ashhar; // Adding the last word
     return reversedSentence;
 }
