@@ -1,0 +1,31 @@
+const userInput = prompt("Enter a list of numbers separated by commas:");
+const userArr = userInput.split(",").map(Number);
+
+if (userArr.some(isNaN)) {
+  console.log("Invalid input. Please enter a list of numbers separated by commas.");
+} else {
+  const sortedArray = vandanasortdesc(userArr);
+  console.log("Sorted array in descending order: " + sortedArray);
+}
+
+function vandanasortdesc(arrToSort) {
+  const arrlength = arrToSort.length;
+
+  for (let i = 0; i < arrlength - 1; i++) {
+    let maxIndex = i;
+
+    for (let j = i + 1; j < arrlength; j++) {
+      if (arrToSort[j] > arrToSort[maxIndex]) {
+        maxIndex = j;
+      }
+    }
+
+    if (maxIndex !== i) {
+      const temp = arrToSort[i];
+      arrToSort[i] = arrToSort[maxIndex];
+      arrToSort[maxIndex] = temp;
+    }
+  }
+
+  return arrToSort;
+}
